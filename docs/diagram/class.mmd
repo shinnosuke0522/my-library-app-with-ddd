@@ -1,0 +1,37 @@
+%%{init:{'theme':'dark'}}%%
+classDiagram
+    namespace Catalog {
+        class Book
+        class Author
+        class Category
+    }
+    Book -- Author
+    Book -- Category
+
+    namespace Facility {
+        class Library
+        class Librarian
+        class Shelf
+        class BookStock
+    }
+    Library -- Shelf
+    Library -- Librarian
+    Shelf -- BookStock
+
+    namespace Lending {
+        class Customer
+        class Reservation
+        class BackorderReservation
+        class Holding
+    }
+    Customer -- Reservation
+    Reservation <|-- BackorderReservation
+    Reservation -- Holding
+    Customer -- Holding
+
+    %% Dependency between Facility and Catalog
+    BookStock -- Book
+
+    %% Dependency between Lending and Facility
+    Holding -- BookStock
+    Reservation -- BookStock
